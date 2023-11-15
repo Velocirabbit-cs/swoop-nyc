@@ -4,7 +4,7 @@ const userController = {};
 
 userController.createUser = (req, res, next) => {
   const { username, password } = req.body;
-  console.log('createUser:', username, password);
+  console.log('entered createUser with:', username, password);
   User.create({ username, password })
     .then((user) => {
       console.log('Created user successfully:', user);

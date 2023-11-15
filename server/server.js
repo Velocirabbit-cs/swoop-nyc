@@ -58,7 +58,6 @@ app.post(
   '/signup',
   userController.createUser,
   sessionController.setSSID,
-  sessionController.verifySSID,
   (req, res) => {
     res.status(200).sendFile(staticPath);
   }

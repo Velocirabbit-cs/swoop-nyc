@@ -12,11 +12,11 @@ sessionController.setSSID = (req, res, next) => {
   Sessions.create({ cookieId: random })
     .then((session) => {
       console.log('RETURNED SESSION:', session);
-      next();
+      return next();
     })
     .catch((err) => {
       console.log('ERROR:', err);
-      next(err);
+      return next(err);
     });
 };
 
@@ -25,8 +25,9 @@ sessionController.setSSID = (req, res, next) => {
 sessionController.verifySSID = (req, res, next) => {
   const { SSID } = req.cookies;
   Sessions.findOne({ cookieId: SSID }).then((session) => {
+    console.log('Session:', session);
     if (session) return next();
-    else res.redirect('/');
+    else res.redirect('/signup');
   });
 };
 
