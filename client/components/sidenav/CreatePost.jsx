@@ -6,7 +6,7 @@ import DatePicker from "react-datepicker";
 //import supabase API and set up connection to supabase storage of images
   //we've implemented row-level security to the database so the API key can be on the client side
 import { createClient } from '@supabase/supabase-js'
-const supabaseUrl = 'https://pvjgsahtonujtyehjsqv.supabase.co'
+const supabaseUrl = 'https://bmvohouexqmijckbooug.supabase.co'
 const supabaseKey = process.env.REACT_APP_SUPABASE
 const supabase = createClient(supabaseUrl, supabaseKey)
 
@@ -52,7 +52,7 @@ const CreatePost = () => {
 
       console.log('JSON item', item);
       
-      const serverResponse = await fetch('/create-item', options);
+      const serverResponse = await fetch('/item', options); //POST to /item
       const response = await serverResponse.json();
       console.log('we are in the frontend after button click', response)
       setPostOutcome([<p>Post sucessfully created.</p>]) //update the message the user sees to 
