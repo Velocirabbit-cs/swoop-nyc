@@ -1,7 +1,7 @@
 import React from "react";
 import { useState } from "react";
 
-const Login = () => {
+export default function Login() {
 
   const [loginMessage, setLoginMessage] = useState([]);
 
@@ -24,16 +24,14 @@ const Login = () => {
       setLoginMessage([<p id='error'>Could not find username or password.</p>])
     }
   }
-return (
-  <div id='login'>
-    <label>User Name:</label>
-    <input type='text' id='username'></input>
-    <label>Password:</label>
-    <input type='password' id='passwordww'></input>
-    <button onClick={checkUser}>Login</button>
-    {loginMessage}
-  </div>
-)
+  
+  return (
+    <div id='login'>
+      <label>User Name:</label>
+        <input type='text' id='username'></input>
+      <label>Password:</label>
+        <input type='password' id='passwordww'></input>
+      <button onClick={checkUser}>Login</button>
+    </div>
+  )
 }
-
-export default Login;

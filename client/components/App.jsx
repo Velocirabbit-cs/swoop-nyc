@@ -1,5 +1,5 @@
 import React from 'react';
-import Header from './Header.jsx';
+import LandingPage from './LandingPage.jsx';
 import { BrowserRouter as Router, Route, Routes, Link } from "react-router-dom";
 import SideNav from './SideNav.jsx';
 import '../styles.css'
@@ -13,7 +13,7 @@ import { useEffect, useState } from 'react';
 import { updateItems } from './reducers/swoopSlice.js';
 
 
-const App = () => {
+export default function App() {
   const dispatch = useDispatch();
 
   // const [fetchMessage, setFetchMessage] = useState([])
@@ -34,29 +34,34 @@ const App = () => {
       return;
     }
   };
-  grabItems();
-  // useEffect(() => {
-  //   grabItems();
-  // },[])
+  grabItems(); // useEffect(() => { grabItems() },[])
 
   return (
     <Router>
-      <Header> </Header>
-      <div className="title">
-        <h1>{'STOOPING'}</h1>
-        <h2>{`The Proccess of recycling goods for eachother's benefit`}</h2>
-      </div>
       
+      <nav>
+        <ul>
+          <li><Link to="/listings">View Listings</Link></li>
+          <li><Link to="/">Home</Link></li>
+          <li><Link to="/createpost">Create Listing</Link></li>
+          {/* <li><Link to="/login">Log In</Link></li> */}
+          {/* <li><Link to="/signup">Sign Up!</Link></li> */}
+        </ul>
+      </nav>
+
       <Routes>
-        <Route path='/createpost' element={<CreatePost/>}></Route>
+        <Route path='/' element={<LandingPage/>}></Route>
         <Route path='/listings' element={<Listings/>}></Route>
+        <Route path='/createpost' element={<CreatePost/>}></Route>
         <Route path='/login' element={<Login/>}></Route>
         <Route path='/signup' element={<Signup/>}></Route>
       </Routes>
+    
+      <footer>
+        <p>A Velocirabbit Production</p>
+        <p>Jade | Jake | Jackson | Jandrew | Jdennis </p>
+      </footer>
 
     </Router>
-
   )
 }
-
-export default App;
