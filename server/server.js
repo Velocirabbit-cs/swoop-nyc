@@ -63,6 +63,15 @@ app.post(
   }
 );
 
+app.post(
+  '/login',
+  userController.verifyUser,
+  sessionController.setSSID,
+  (req, res) => {
+    res.status(200).sendFile(staticPath);
+  }
+);
+
 app.use('/build', express.static(path.join(__dirname, '../build')));
 // app.use('/login', userRouter);
 
