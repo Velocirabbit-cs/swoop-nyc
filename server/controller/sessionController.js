@@ -27,7 +27,7 @@ sessionController.verifySSID = (req, res, next) => {
   Sessions.findOne({ cookieId: SSID }).then((session) => {
     console.log('Session:', session);
     if (session) return next();
-    else res.redirect('/signup');
+    else res.redirect('/');
   });
 };
 

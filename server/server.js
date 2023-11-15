@@ -40,10 +40,10 @@ console.log('build html ', staticPath);
 // const staticPath2 = path.join(__dirname, '../index.html');
 // console.log('home html', staticPath2);
 // app.get('/createpost', express.static(path.join(__dirname, '../build/index.html')));
-app.use('/createpost', (req, res) => {
+app.use('/createpost', sessionController.verifySSID, (req, res) => {
   res.status(200).sendFile(staticPath);
 });
-app.use('/listings', (req, res) => {
+app.use('/listings', sessionController.verifySSID, (req, res) => {
   res.status(200).sendFile(staticPath);
 });
 
