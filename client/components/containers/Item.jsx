@@ -34,12 +34,21 @@ const Item = () => {
   const items = useSelector((state) => {return state.swoop.items})
   const [itemDiv, setItemDiv] = useState([]);//can use redux state
 
+  //loop through the list from back to front & push all of the 
   const render = () => {
     if (items !== undefined) {
       for (let i = items.length -1; i >= 0; i--) {
         //create a viewer to display all properties of each item
+        console.log('inside of the loop')
         itemDiv.push(
           <ItemView className='itemView' item={items[i]}/>
+          // <div id={items[i].title} className='items-post'>
+          //   <h4>{items[i].title}</h4>
+          //   <img src={items[i].image} style={{height: '300px', width: '300px'}}/>
+          //   <p>{items[i].location[0]},{items[i].location[1]} </p>
+          //   <p>{items[i].description}</p>
+          //   <p>Drop Date: {items[i].dropDate}</p>
+          // </div>
         )
       }
     }
