@@ -12,11 +12,11 @@ sessionController.setSSID = (req, res, next) => {
   Sessions.create({ cookieId: random })
     .then((session) => {
       console.log('RETURNED SESSION:', session);
-      return next();
+      next();
     })
     .catch((err) => {
       console.log('ERROR:', err);
-      return next(err);
+      next(err);
     });
 };
 
