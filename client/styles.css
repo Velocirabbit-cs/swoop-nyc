@@ -1,43 +1,34 @@
-* {
-    font-family: 'Montserrat';
-    color: #4F4946;
-    font-weight: 800;
-  }
+/* * {
+} */
 
 body {
-    display: flex;
-    background-color: #A5755F;
-    padding: 30px 30px;
+  background-color: #A5755F;
+}
+
+#root {
+  font-family: 'Montserrat';
+  color: #4F4946;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
 }
 
 #header {
-    position: fixed;
-    top: 0;
-    left: 0;
-    display: flex;
-    justify-content: space-around;
-    width: 100vw;
-    height: 75px;
+  display: flex;
+  justify-content: flex-start;
+  width: 100%;
+  height: 75px;
+  font-weight: 800;
+  background-color: #777777;
 }
 
-#header-logo {
-    height: 75px;
-    width: 75px;
+#header button {
+  background-color: #777777;
 }
 
-#header-left {
-    width: 100%;
-    display: flex;
-    justify-content: flex-start;
-}
-
-#header-right {
-    width: 100%;
-    display: flex;
-    justify-content: flex-end;
-    gap: 50px;
-    align-items: center;
-
+.title {
+  width: 95%;
 }
 
 #sideNav {
@@ -63,14 +54,6 @@ body {
     border-radius: 5px;
     box-shadow: 0px 0px 50px rgba(0, 0, 0, 0.505);
 
-}
-
-#root {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: row;
-    margin: auto;
 }
 
 .form-field {
