@@ -1,4 +1,4 @@
-const Session = require('../models/sessionModel.js');
+const Sessions = require('../models/sessionModel.js');
 
 const sessionController = {};
 
@@ -8,20 +8,26 @@ const sessionController = {};
 sessionController.setSSID = (req, res, next) => {
   const random = Math.floor(Math.random() * 100000);
   res.cookie('SSID', random);
-  try {
-    Session.create({ random });
-    return next();
-  } catch {
-    const err = {
-      log: 'Error in sessionController.setSSID middleware',
-      message: { err: 'There was an issue authenticating user.' },
-    };
-    return next(err);
-  }
+
+  Sessions.create({ cookieId: random })
+    .then((session) => {
+      console.log('RETURNED SESSION:', session);
+      return next();
+    })
+    .catch((err) => {
+      console.log('ERROR:', err);
+      return next(err);
+    });
 };
 
 // verifySSID for anytime a user goes to a new page
 // This will check that there is a session document in the database with an SSID that matches the user's cookie.
-sessionController.verifySSID = (req, res, next) => {};
+sessionController.verifySSID = (req, res, next) => {
+  const { SSID } = req.cookies;
+  Sessions.findOne({ cookieId: SSID }).then((session) => {
+    if (session) return next();
+    else res.redirect('/');
+  });
+};
 
 module.exports = sessionController;
