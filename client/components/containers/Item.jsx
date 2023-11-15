@@ -7,24 +7,28 @@ import { useSelector } from "react-redux/es/hooks/useSelector";
 
 const Item = () => {
 
-  //using this to try and get the listings page to pull info from the DB when you go directly to this page instead of navigating from the home page
-  // const dispatch = useDispatch();
-  // const grabItems = async () => {
-  //   try {
-  //     const getData = await fetch('/all-listings');
-  //     if (!getData.ok) {
-  //       // setFetchMessage([<p id='error'>An error occured, could not load listings.</p>])
-  //     }
-  //     const response = await getData.json();
-  //     //dispatch this information to the global state
-  //     dispatch(updateItems({response: response}));
-  //   }
-  //   catch (err) {
-  //     // setFetchMessage([<p id='error'>An error occured, could not load listings. Error: {err.message}</p>])
-  //     return;
-  //   }
-  // };
-  // grabItems();
+  const dispatch = useDispatch();
+  
+  //function below does what the regular grabItems does in App, but returns only items in a neighborhood/borough. Takes in 2 args (strings) to filter the query on server side (via a query on the req body).
+  const grabFilteredItems = async (borough,neighborhood) => {
+    try {
+      //fetching from item/filter router path with the queries added on
+      const filteredItems = await fetch('/item/filter'+ new URLSearchParams({
+        borough: borough,
+        neighborhood: neighborhood,
+      }));
+
+      if (!getData.ok) {
+      //
+      }
+      const jsonedFilteredItems = await filteredItems.json();
+      //dispatch this information to the global state
+      dispatch(updateItems({response: jsonedFilteredItems}));
+    }
+    catch (err) {
+      return;
+    }
+  };
 
   //useselector to subscribe to the items piece of state to populate 
   const items = useSelector((state) => {return state.swoop.items})
@@ -32,7 +36,6 @@ const Item = () => {
 
   //loop through the list from back to front & push all of the 
   const render = () => {
-    // grabItems(); //_Majed: I didn't write this but leaving it here in case it's relevant.
     if (items !== undefined) {
       for (let i = items.length -1; i >= 0; i--) {
         //create a viewer to display all properties of each item
@@ -50,9 +53,10 @@ const Item = () => {
       }
     }
   }
-//do this filtering on fetch request w specified params
+  //do this filtering on fetch request w specified params
   //for filter form
   const [neighboorhoodValues, setNeighboorhoodValues] = useState([]);
+  //this function updates the dropdown menu to display neighborhoods that correspond to the selected borough. invoked in onchange of filter-borough dropdown.
   const neighboorhoodPicker = () => {
     const borough = document.querySelector('#filter-borough') 
     if (borough.value === 'Brooklyn') {
@@ -82,32 +86,8 @@ const Item = () => {
     }
   };
   
-  //filtering listings by neighbored
-  //send another fetch request with params that specify the neighboorhood
-  const renderWithFilter = () => {
-    const filterChoice = document.querySelector('#filter-neighboorhood');
-    
-    console.log('filtered choice: ', filterChoice.value)
-    const filter = [];
-    if (items !== undefined) {
-      for (let i = items.length -1; i >= 0; i--) {
-        if (items[i].location[1] === filterChoice.value) {
-          console.log(items[i].title)
-          filter.push(
-            <div id={items[i].title} className='items-post'>
-              <h4>{items[i].title}</h4>
-              <img src={items[i].image} style={{height: '300px', width: '300px'}}/>
-              <p>{items[i].location[0]},{items[i].location[1]} </p>
-              <p>{items[i].description}</p>
-              <p>Drop Date: {items[i].dropDate}</p>
-            </div>
-          )
-        }
-      }
-    }
-    setItemDiv(filter)
-    }
   render();
+  //the return is the borough dropdown, which updates the neighborhood dropdown, and the filter button, which queries database to receive items based on selected borough and neighborhood.
   return (
     <div>
       <select id='filter-borough' onChange={neighboorhoodPicker}>
@@ -116,7 +96,9 @@ const Item = () => {
         <option value="Manhattan">Manhattan</option>
       </select>
       {neighboorhoodValues}
-      <button id='filter-button' onClick={renderWithFilter}>Filter by Location</button>
+      <button id='filter-button' onClick={ async () => {
+        await grabFilteredItems(document.querySelector('#filter-borough').value,document.querySelector('#filter-neighboorhood').value)
+      }}>Filter by Location</button>
       {itemDiv}
     </div>
   )
