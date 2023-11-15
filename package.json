@@ -45,7 +45,7 @@
     "css-loader": "^6.8.1",
     "html-webpack-plugin": "^5.5.3",
     "mongodb": "^6.2.0",
-    "mongoose": "^8.0.0",
+    "mongoose": "^8.0.1",
     "mongosh": "^2.0.2",
     "nodemon": "^2.0.7",
     "redux": "^4.2.1",
