@@ -21,7 +21,7 @@ const App = () => {
   const grabItems = async () => {
     
     try {
-      const getData = await fetch('/all-listings');
+      const getData = await fetch('/item');
       if (!getData.ok) {
         // setFetchMessage([<p id='error'>An error occured, could not load listings.</p>])
       }
