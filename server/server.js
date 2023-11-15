@@ -52,6 +52,10 @@ app.get('/signup', (req, res) => {
   res.status(200).sendFile(staticPath);
 });
 
+app.get('/auth', sessionController.verifySSID, (req, res) => {
+  res.status(200).json(true);
+});
+
 // post request to signup to create the user
 // The body will have {username, password}
 app.post(

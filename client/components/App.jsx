@@ -15,6 +15,7 @@ import { updateItems } from './reducers/swoopSlice.js';
 export default function App() {
   const dispatch = useDispatch();
   const [showShareView, setShowShareView] = useState(false);
+  const [authenticated, setAuthenticated] = useState(false);
 
   function shareButton() {}
 
@@ -25,12 +26,16 @@ export default function App() {
           <li>
             <Link to='/'>Home</Link>
           </li>
-          <li>
-            <Link to='/listings'>View Listings</Link>
-          </li>
-          <li>
-            <Link to='/createpost'>Create Listing</Link>
-          </li>
+          {authenticated && (
+            <li>
+              <Link to='/listings'>View Listings</Link>
+            </li>
+          )}
+          {authenticated && (
+            <li>
+              <Link to='/createpost'>Create Listing</Link>
+            </li>
+          )}
         </ul>
       </nav>
 
