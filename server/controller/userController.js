@@ -16,24 +16,22 @@ userController.createUser = (req, res, next) => {
 };
 
 userController.verifyUser = async (req, res, next) => {
-  console.log(req.body.username);
-  //verify username exists for creating new user
-  // const user = await User.find({username: req.body.username})
+  const { username, password } = req.body;
 
-  // console.log(user);
-  // if (!user) return res.status(404).send({ message: "Invalid username" });
-  // console.log('user password', user.password);
+  const user = await User.findOne({ username, password });
+
+  if (!user) return res.status(404).send({ message: 'Invalid username' });
+  else {
+    return next();
+  }
   // const passwordIsValid = await bcrypt.compare(
-  //     req.body.password, //plain string password
-  //     user.password //hashed password in db
-  //   );
+  //   req.body.password, //plain string password
+  //   user.password //hashed password in db
+  // );
 
   // if (!passwordIsValid) {
-  // return res.status(401).send({ message: "Invalid password" });
+  //   return res.status(401).send({ message: 'Invalid password' });
   // }
-
-  // console.log('valid password', passwordIsValid);
-  next();
 };
 
 module.exports = userController;

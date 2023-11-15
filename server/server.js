@@ -68,7 +68,8 @@ app.post(
   userController.verifyUser,
   sessionController.setSSID,
   (req, res) => {
-    res.status(200).sendFile(staticPath);
+    console.log('Successful login');
+    res.redirect('/item');
   }
 );
 
