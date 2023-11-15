@@ -9,11 +9,11 @@ export const swoopSlice = createSlice({
     },
     reducers: {
         addItem: (state,action) => {
-            const newItem = {
-                //populate the with the input fields
-            }
-            //update the state here 
-            state.items.push(newItem)
+          const newItem = {
+            //populate the with the input fields
+          }
+          //update the state here 
+          state.items.push(newItem)
         },
         userLogIn: (state,action) => {
             state.isLoggedIn = true
@@ -22,7 +22,6 @@ export const swoopSlice = createSlice({
         updateItems: (state, action) => {
             const items = action.payload.response;
             state.items = items
-            
         },
     }
 });
