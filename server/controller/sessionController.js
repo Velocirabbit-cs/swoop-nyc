@@ -24,4 +24,4 @@ sessionController.setSSID = (req, res, next) => {
 // This will check that there is a session document in the database with an SSID that matches the user's cookie.
 sessionController.verifySSID = (req, res, next) => {};
 
-export default sessionController;
+module.exports = sessionController;
