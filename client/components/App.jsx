@@ -17,6 +17,18 @@ export default function App() {
   const [showShareView, setShowShareView] = useState(false);
   const [authenticated, setAuthenticated] = useState(false);
 
+  const checkAuth = () => {
+    fetch('/auth')
+      .then((res) => res.json())
+      .then((auth) => {
+        setAuthenticated(auth);
+      });
+  };
+
+  useEffect(() => {
+    checkAuth();
+  }, []);
+
   function shareButton() {}
 
   return (
