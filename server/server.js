@@ -24,10 +24,13 @@ mongoose.connection.once('open', () => {
     console.log('Connected to Database');
   });
 
-app.use('/create-item', itemRouter)
-app.use('/all-listings', itemController.getAllItems, (req, res) => {
-    res.status(200).json(res.locals.allListings)
-})
+app.use('/item', itemRouter)
+//both endpoints below are now pushed into itemRouter^^
+
+        // app.use('/create-item', itemRouter)
+        // app.use('/all-listings', itemController.getAllItems, (req, res) => {
+        //     res.status(200).json(res.locals.allListings)
+        // })
 
 const staticPath = path.join(__dirname, '../build/index.html');
 console.log('build html ',staticPath);
