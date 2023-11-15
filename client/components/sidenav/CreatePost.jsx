@@ -52,7 +52,7 @@ const CreatePost = () => {
 
       console.log('JSON item', item);
       
-      const serverResponse = await fetch('/create-item', options);
+      const serverResponse = await fetch('/item', options); //POST to /item
       const response = await serverResponse.json();
       console.log('we are in the frontend after button click', response)
       setPostOutcome([<p>Post sucessfully created.</p>]) //update the message the user sees to 
