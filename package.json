@@ -7,7 +7,8 @@
   "scripts": {
     "start": "NODE_ENV=production node server/server.js",
     "build": "NODE_ENV=production webpack",
-    "dev": "NODE_ENV=development webpack serve --open & NODE_ENV=development nodemon server/server.js"
+    "dev": "NODE_ENV=development webpack serve --open & NODE_ENV=development nodemon server/server.js",
+    "test": "jest --verbose"
   },
   "nodemonConfig": {
     "ignore": [
@@ -47,7 +48,7 @@
     "html-webpack-plugin": "^5.5.3",
     "jest": "^27.5.1",
     "mongodb": "^6.2.0",
-    "mongoose": "^8.0.0",
+    "mongoose": "^8.0.1",
     "mongosh": "^2.0.2",
     "nodemon": "^2.0.7",
     "redux": "^4.2.1",

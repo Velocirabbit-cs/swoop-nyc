@@ -35,7 +35,7 @@ describe('Unit react component "Item"', () => {
       // console.log(itemViewTest.getByRole('heading'));
       // expect(itemViewTest.getByText('item1Title')).toBeTruthy();
       expect(itemViewTest.getByTestId('itemViewDropDate')).toBeTruthy();
-      // expect(itemViewTest.getByTestId('itemViewDropDate')).toHaveTextContent('dropDate1/1/2000');
+  // expect(itemViewTest.getByTestId('itemViewDropDate')).toHaveTextContent('dropDate1/1/2000');
     });
 
   });
