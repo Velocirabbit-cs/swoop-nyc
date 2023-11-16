@@ -84,7 +84,7 @@ const Item = () => {
       <button id='filter-button' onClick={ async () => {
         await grabFilteredItems(document.querySelector('#filter-borough').value,document.querySelector('#filter-neighboorhood').value)
       }}>Filter by Location</button>
-      <div className = 'listingsContainer'>
+      <div className='items-box'>
         {itemDiv}
       </div>
     </div>
