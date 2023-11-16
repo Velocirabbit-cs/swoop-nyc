@@ -2,7 +2,7 @@ import React from 'react';
 import LandingPage from './LandingPage.jsx';
 import { BrowserRouter as Router, Route, Routes, Link } from 'react-router-dom';
 import SideNav from './SideNav.jsx';
-import '../styles.css';
+import '../styles.scss';
 import '../../build/calendar.css';
 import CreatePost from './sidenav/CreatePost.jsx';
 import Listings from './containers/Listings.jsx';
@@ -15,7 +15,6 @@ import { updateItems } from './reducers/swoopSlice.js';
 
 export default function App() {
   const dispatch = useDispatch();
-  const [showShareView, setShowShareView] = useState(false);
   const [authenticated, setAuthenticated] = useState(false);
 
   const checkAuth = () => {
@@ -35,11 +34,10 @@ export default function App() {
     checkAuth();
   }, []);
 
-  function shareButton() {}
-
   return (
     <Router>
       <nav>
+        <div className="headerPlaceholder"></div>
         <ul>
           <li>
             <Link to='/'>Home</Link>
@@ -55,7 +53,10 @@ export default function App() {
             </li>
           )}
         </ul>
-        <Share view={showShareView} />
+        {/* {authenticated && (
+          <Share view={showShareView} >{'Share'}</Share>
+        )} */}
+        <Share />
       </nav>
 
       <Routes>
