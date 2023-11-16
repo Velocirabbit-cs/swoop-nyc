@@ -9,8 +9,13 @@ const Signup = () => {
     //grab the form fields and build an object
     const username = document.querySelector('#username');
     const password = document.querySelector('#password');
-    const user = { username: username.value, password: password.value };
-    console.log('USERNAME/PASS', user);
+    const email = document.querySelector('#email');
+    const user = {
+      username: username.value,
+      password: password.value,
+      email: email.value,
+    };
+    console.log('New User Info:', user);
     //checks to make sure form fields are not empty
     for (const key in user) {
       if (key === '') {
@@ -57,6 +62,14 @@ const Signup = () => {
       <div>
         <label>Password:</label>
         <input type='password' id='password'></input>
+      </div>
+      <div>
+        <label>Email:</label>
+        <input
+          type='password'
+          id='password'
+          placeholder='for new accounts only'
+        ></input>
       </div>
       <button onClick={createUser}>Login</button>
       {signinMessage}

@@ -8,6 +8,7 @@ const cookieSession = require('cookie-session');
 const itemRouter = require('./router/itemRouter.js');
 const itemController = require('./controller/itemController.js');
 const userController = require('./controller/userController.js');
+const emailController = require('./controller/emailController.js');
 const sessionController = require('./controller/sessionController.js');
 
 const path = require('path');
@@ -61,9 +62,16 @@ app.get('/auth', sessionController.verifySSID, (req, res) => {
 
 // post request to signup to create the user
 // The body will have {username, password}
-app.post('/signup', userController.createUser, sessionController.setSSID, (req, res) => {
-  res.status(200).send(res.locals.validator);
-});
+app.post(
+  '/signup',
+  userController.createUser,
+  sessionController.setSSID,
+  (req, res, next) => {
+    res.status(200).sendFile(staticPath);
+    return next();
+  },
+  emailController.sendWelcomeEmail
+);
 
 app.post(
   '/login',
