@@ -3,6 +3,7 @@ const app = express();
 const PORT = 3000;
 // const userRouter = require('./router/userRouter');
 const cors = require('cors');
+const cookieParser = require('cookie-parser');
 const cookieSession = require('cookie-session');
 const itemRouter = require('./router/itemRouter.js');
 const itemController = require('./controller/itemController.js');
@@ -22,6 +23,7 @@ const mongoose = require('mongoose');
 require('dotenv').config();
 
 app.use(express.json());
+app.use(cookieParser());
 mongoose.connect(process.env.DATABASE_CONNECTION_KEY); //must create a new .env file somehow link to this, will give us mongoDB access
 mongoose.connection.once('open', () => {
   console.log('Connected to Database');
@@ -50,6 +52,10 @@ app.use('/listings', sessionController.verifySSID, (req, res) => {
 // get request to signup to get signup page
 app.get('/signup', (req, res) => {
   res.status(200).sendFile(staticPath);
+});
+
+app.get('/auth', sessionController.verifySSID, (req, res) => {
+  res.status(200).json(true);
 });
 
 // post request to signup to create the user

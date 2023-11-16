@@ -16,6 +16,24 @@ import { updateItems } from './reducers/swoopSlice.js';
 export default function App() {
   const dispatch = useDispatch();
   const [showShareView, setShowShareView] = useState(false);
+  const [authenticated, setAuthenticated] = useState(false);
+
+  const checkAuth = () => {
+    console.log('Check auth');
+    fetch('/auth')
+      .then((res) => res.json())
+      .then((auth) => {
+        console.log('AUTH:', auth);
+        if (auth === true) setAuthenticated(auth);
+      })
+      .catch((err) => {
+        console.log('not authorized');
+      });
+  };
+
+  useEffect(() => {
+    checkAuth();
+  }, []);
 
   function shareButton() {}
 
@@ -26,12 +44,16 @@ export default function App() {
           <li>
             <Link to='/'>Home</Link>
           </li>
-          <li>
-            <Link to='/listings'>View Listings</Link>
-          </li>
-          <li>
-            <Link to='/createpost'>Create Listing</Link>
-          </li>
+          {authenticated && (
+            <li>
+              <Link to='/listings'>View Listings</Link>
+            </li>
+          )}
+          {authenticated && (
+            <li>
+              <Link to='/createpost'>Create Listing</Link>
+            </li>
+          )}
         </ul>
       </nav>
 
