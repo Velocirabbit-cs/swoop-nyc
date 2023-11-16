@@ -34,10 +34,14 @@ const Signup = () => {
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify(user),
     };
-    try {
-      await fetch('http://localhost:3000/signup/', options);
-    } catch (err) {
+      await fetch('http://localhost:3000/signup/', options)
+        .then((res) => res.json())
+        .then((auth) =>  {
+          console.log('this is auth', auth)
+        })
+      let checker = false
       //if the login fails, throw this error below the login button
+      if(checker === true){
       setSigninMessage([
         <p id='error'>Unable to create account. Please try again.</p>,
       ]);

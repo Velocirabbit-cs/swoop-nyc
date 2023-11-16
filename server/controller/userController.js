@@ -5,14 +5,34 @@ const userController = {};
 userController.createUser = (req, res, next) => {
   const { username, password } = req.body;
   console.log('entered createUser with:', username, password);
-  User.create({ username, password })
+  User.find({username})
+    .then((data) => {
+      console.log(data)
+      if(data[0] !== undefined){
+        console.log('Username is taken -from userController')
+        res.locals.validator = 'invalid'
+        return res.send(res.locals.validator)
+      }
+      else{
+        User.create({ username, password })
     .then((user) => {
       console.log('Created user successfully:', user);
+      res.locals.validator = 'valid'
       return next();
     })
     .catch((err) => {
       return next(err);
     });
+      }
+    })
+  // User.create({ username, password })
+  //   .then((user) => {
+  //     console.log('Created user successfully:', user);
+  //     return next();
+  //   })
+  //   .catch((err) => {
+  //     return next(err);
+  //   });
 };
 
 userController.verifyUser = async (req, res, next) => {

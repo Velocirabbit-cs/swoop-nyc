@@ -1,6 +1,6 @@
 import React from 'react';
 import LandingPage from './LandingPage.jsx';
-import { BrowserRouter as Router, Route, Routes, Link } from 'react-router-dom';
+import { BrowserRouter as Router, Route, Routes, Link, redirect } from 'react-router-dom';
 import SideNav from './SideNav.jsx';
 import '../styles.css';
 import '../../build/calendar.css';
@@ -24,7 +24,11 @@ export default function App() {
       .then((res) => res.json())
       .then((auth) => {
         console.log('AUTH:', auth);
-        if (auth === true) setAuthenticated(auth);
+        if (auth === true){
+          setAuthenticated(auth)
+          console.log('attempting redirect')
+          redirect('/listings')
+        }
       })
       .catch((err) => {
         console.log('not authorized');
@@ -58,7 +62,7 @@ export default function App() {
       </nav>
 
       <Routes>
-        <Route path='/' element={<LandingPage checkAuth={checkAuth} />}></Route>
+        <Route path='/' element={<LandingPage checkAuth={checkAuth} authenticated={authenticated} />}></Route>
         <Route path='/listings' element={<Listings />}></Route>
         <Route path='/createpost' element={<CreatePost />}></Route>
         <Route path='/login' element={<Login />}></Route>

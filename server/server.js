@@ -38,6 +38,7 @@ app.use('/item', itemRouter);
 // })
 
 const staticPath = path.join(__dirname, '../build/index.html');
+
 console.log('build html ', staticPath);
 // const staticPath2 = path.join(__dirname, '../index.html');
 // console.log('home html', staticPath2);
@@ -61,7 +62,7 @@ app.get('/auth', sessionController.verifySSID, (req, res) => {
 // post request to signup to create the user
 // The body will have {username, password}
 app.post('/signup', userController.createUser, sessionController.setSSID, (req, res) => {
-  res.status(200).sendFile(staticPath);
+  res.status(200).send(res.locals.validator);
 });
 
 app.post(
