@@ -53,6 +53,7 @@ app.get('/signup', (req, res) => {
 });
 
 app.get('/auth', sessionController.verifySSID, (req, res) => {
+  console.log('****!!!!***');
   res.status(200).json(true);
 });
 

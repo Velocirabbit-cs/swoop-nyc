@@ -23,6 +23,7 @@ sessionController.setSSID = (req, res, next) => {
 // verifySSID for anytime a user goes to a new page
 // This will check that there is a session document in the database with an SSID that matches the user's cookie.
 sessionController.verifySSID = (req, res, next) => {
+  console.log('Verifying SSID');
   const { SSID } = req.cookies;
   Sessions.findOne({ cookieId: SSID }).then((session) => {
     console.log('Session:', session);

@@ -18,10 +18,12 @@ export default function App() {
   const [authenticated, setAuthenticated] = useState(false);
 
   const checkAuth = () => {
+    console.log('CHECKAUTH!!');
     fetch('/auth')
       .then((res) => res.json())
       .then((auth) => {
-        setAuthenticated(auth);
+        console.log('AUTH:', auth);
+        if (auth === true) setAuthenticated(auth);
       });
   };
 
