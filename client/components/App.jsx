@@ -24,6 +24,9 @@ export default function App() {
       .then((auth) => {
         console.log('AUTH:', auth);
         if (auth === true) setAuthenticated(auth);
+      })
+      .catch((err) => {
+        console.log('not authorized');
       });
   };
 
