@@ -91,13 +91,11 @@ export default function Login({ checkAuth }) {
           placeholder='for new accounts only'
         ></input>
       </div>
-      <div id='loginSignInMessage'>{signinMessage}</div>
-      <div id='signUpButtons'>
-        <button onClick={checkUser}>Login</button>
-        <button onClick={createUser} type='button'>
-          Sign Up
-        </button>
+      <div className='signUpButtons'>
+        <button onClick={checkUser} type='button' id='loginButton' > Login </button>
+        <button onClick={createUser} type='button' id='signUpButton'> Click here to sign up!</button>
       </div>
+      <div id='loginSignInMessage'>{signinMessage}</div>
     </div>
   );
 }

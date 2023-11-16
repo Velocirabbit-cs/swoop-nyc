@@ -1,0 +1,269 @@
+
+/*
+COLOR PALLETE REFERENCES
+
+/* Blue Hues */
+$primary-lightest: hsl(200, 49%, 72%);
+$primary-lighter: #7DA5B6;
+$primary: #5A7E8D;
+$primary-darker: #3C5E6C;
+$primary-darkest: #283A42;
+/* White/Grey Hues */
+$white-lightest: #EEEEED;
+$white-lighter: #C9C9C8;
+$white: #BBBBBB;
+$white-darker: #D0D0CF;
+$white-darkest: #D8D8D6;
+/* Purple Hues */
+$secondary-lightest: #574D54;
+$secondary-lighter: #513A4A;
+$secondary: #463C43;
+$secondary-darker: #322B30;
+$secondary-darkest: #1C191B;
+
+
+body {
+  background-color: $white-lighter;
+}
+
+#root {
+  height: 100%;
+  font-family: 'Montserrat';
+  color: $primary-darkest;  
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+}
+
+
+/* NAV BAR */
+nav {
+  width: 100%;
+  background-color: $primary;
+  height: 3em;
+  display:flex;
+  flex-direction: column;
+  align-items:center;
+  justify-content: center;
+  
+  ul {
+    width: 100%;
+    max-width: 700px;
+    display:flex;
+    flex-direction: row;
+    justify-content: space-around;
+    list-style-type: none;
+    padding: 0px;
+    
+    li {
+      width: 30%;
+      text-align: center;
+      
+      a {
+        text-decoration: none;
+        color: $white-lightest;
+      }
+    }
+  }
+}
+
+/* HOME PAGE */
+.landing-page {
+  width: 100%;
+  max-width: 1500px;
+  text-align: center;
+  display: flex;
+  justify-content: space-around;
+  
+  #title {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 45%;
+    text-align: center;
+    
+    h1 {
+      width: 100%;
+      margin-bottom: 10px;
+      font-size: 6em;
+      text-align: center;
+      overflow-wrap: break-word;
+      color: $secondary-darker;
+    }
+    h2 {
+      width: 90%;
+      text-align: center;
+      color: $secondary-lightest;
+    }
+  }
+}
+
+#login {
+  width: 45%;
+  max-width: 600px;
+  height: 100%;
+  min-height: 350px;
+  max-height: 300px;
+  background-color: #EEEEED;
+  border-radius: 10px;
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+  
+  label {
+    font-size: 1.5em;
+    width: 80%;
+  }
+  input {
+    font-size: 1.3em;
+    text-align: center;
+    width: 80%;
+  }
+  
+  .signUpButtons {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-around;
+    
+    #loginButton {
+      cursor: pointer;
+      width: 60%;
+      background-color: $primary-lightest;
+      border: 5px solid $primary-darker;
+      border-radius: 25px;
+      color: $primary-darkest;
+      font-size: 1.5em;
+      font-weight: bolder;
+      line-height: 1.3em;
+      &:active {
+        background-color: $primary-lighter;
+      }
+    }
+
+    #signupButton {
+      cursor: pointer;
+      margin-top: 10px;
+      border: none;
+      color: $secondary;
+    }
+  }
+  
+
+  #loginPassword, #loginUserName {
+    width: 80%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+    text-align: center;
+  }
+  #loginSignInMessage {
+    color: red;
+    padding-left: 3px;
+    padding-right: 3px;
+  }
+}
+
+
+/* FOOTER */
+footer {
+  width: 100%;
+  background-color: $secondary-darker;
+  text-align: center;
+  line-height: 1.5em;
+  color: $white-darkest;
+  padding-top: 5px;
+  padding-bottom: 5px;
+}
+
+footer span {
+  color: $primary;
+  font-size: 1.1em;
+  font-weight: bolder;
+  padding-left: 5px;
+}
+/* END FOOTER */
+
+
+/* POP UP */
+
+/* Popup container */
+.shareButton {
+  position: absolute;
+  top: 12;
+  right: 15;
+  z-index: 999;
+  width: 0px;
+  padding: 2px;
+  text-align: right;
+  direction: rtl;
+  // display: inline-block;
+  cursor: pointer;
+}
+
+/* The actual popup */
+.popup {
+  direction: ltr;
+  top: 100px;
+  right: 0;
+  width: 300px;
+  height: 200px;
+  background-color: $white-lightest;
+  border-radius: 10px;
+  text-align: left;
+  color: $secondary;
+  border: 3px solid $secondary;
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.75);
+  padding: 25px;
+  z-index: 1;
+  margin-top: 23px;
+  animation: fadeIn 500ms;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  cursor: default;
+
+  .popUpTitle{
+    text-align: left;
+    padding-bottom: 15px;
+    border-bottom: 1px solid $white-lighter;
+    color: $secondary-darker;
+  }
+
+  .shareLinkBox{
+    border: 2px solid $white-darkest;
+    padding: 7px;
+    overflow: elipses;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    color: #999999;
+
+    button {
+      border: none;
+      background-color: $primary-lightest;
+      border: 2px solid $primary-darkest;
+      border-radius: 5px;
+      color: $primary-darkest;
+      font-size: 1.1em;
+      font-weight: bolder;
+      padding: 5px;
+      padding-left: 10px;
+      padding-right: 10px;
+      cursor: pointer;
+      &:active {
+        background-color: $primary-lighter;
+      }
+    }
+  }
+}
+
+@keyframes fadeIn {
+  from {opacity: 0;}
+  to {opacity:1 ;}
+}
