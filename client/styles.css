@@ -147,6 +147,11 @@ nav {
     align-items: center;
     text-align: center;
   }
+  #loginSignInMessage {
+    color: red;
+    padding-left: 3px;
+    padding-right: 3px;
+  }
 
 /* END HOME PAGE */
 
