@@ -74,7 +74,8 @@ const CreatePost = () => {
     //build an item object with the form values 
     const item = {}; 
     item.title = formTitle.value;
-    item.location = [ formBorough.value, formNeighboorhood.value];
+    item.borough = formBorough.value;
+    item.neighborhood = formNeighboorhood.value;
     item.description = formDesc.value;
     item.dropDate = dropDate;
     item.image = formImg.files[0];

@@ -10,7 +10,7 @@ const ItemView = (props) => {
       <div data-testid='itemView' className='items-post'>
         <h4>{title}</h4>
         <img src={image} className='itemImg' style={{height: '300px', width: '300px'}}/>
-        <p>{location[0]},{location[1]} </p>
+        {/* <p>{location[0]},{location[1]} </p> */}
         <p>{description}</p>
         <p data-testid='itemViewDropDate'>Drop Date: {dropDate}</p>
       </div> 
