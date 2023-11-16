@@ -7,8 +7,8 @@ const itemSchema = new Schema({
   description: { type: String, cast: false, required: true },
   borough: { type: String, cast: false, required: true },
   neighborhood: {type: String, cast: false,required: true}, // [borough, neighborhood]
-  dropDate: { type: Date, cast: false, default: Date.now },
-  expireAt: { type: Date, cast: false, expires: '1d' }, // I think this is wrong, full document should expire
+  dropDate: { type: Date, default: Date.now },
+  expireAt: { type: Date, expires: '1d' }, // I think this is wrong, full document should expire
 });
 
 module.exports = mongoose.model('Item', itemSchema);
