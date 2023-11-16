@@ -40,7 +40,7 @@ export default function App() {
         <Route path='/signup' element={<Signup/>}></Route>
       </Routes>
 
-      <Share view={showShareView} />
+      {/* <Share view={showShareView} /> */}
     
       <footer>
         <p>A Velocirabbit Production</p>
