@@ -18,7 +18,7 @@ export default function App() {
   const [authenticated, setAuthenticated] = useState(false);
 
   const checkAuth = () => {
-    console.log('CHECKAUTH!!');
+    console.log('Check auth');
     fetch('/auth')
       .then((res) => res.json())
       .then((auth) => {
