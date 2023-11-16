@@ -27,6 +27,28 @@ const Item = () => {
     }
   };
 
+  const populate = async () => {
+    for(let i = 0; i < 10; i++){
+      const loadListings = {
+        title: 'Filter Test Loader',
+        image:
+          '/https://tf-cmsv2-smithsonianmag-media.s3.amazonaws.com/filer_public/55/95/55958815-3a8a-4032-ac7a-ff8c8ec8898a/gettyimages-1067956982.jpg', //url from supabase
+        description: 'A new type of cat',
+        borough: 'Brooklyn',
+        neighborhood: 'Bushwick',
+        // dropDate: Date.now()
+      };
+
+    await fetch('/item', {
+      method: 'POST',
+      headers: {
+        "Content-type": 'application/json'
+      },
+      body: JSON.stringify(loadListings),
+    })
+    }
+  }
+
   const [neighboorhoodValues, setNeighboorhoodValues] = useState([]);
   //this function updates the dropdown menu to display neighborhoods that correspond to the selected borough. invoked in onchange of filter-borough dropdown.
   
@@ -81,6 +103,7 @@ const Item = () => {
         <option value="Manhattan">Manhattan</option>
       </select>
       {neighboorhoodValues}
+      <button onClick={populate}>Populate Bushwick</button>
       <button id='filter-button' onClick={ async () => {
         await grabFilteredItems(document.querySelector('#filter-borough').value,document.querySelector('#filter-neighboorhood').value)
       }}>Filter by Location</button>

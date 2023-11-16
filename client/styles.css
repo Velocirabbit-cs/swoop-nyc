@@ -227,3 +227,8 @@ footer span {
   padding-left: 5px;
 }
 /* END FOOTER */
+
+.items-post {
+  height: 100px;
+  width: 100px;
+}
