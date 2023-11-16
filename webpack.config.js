@@ -79,9 +79,10 @@ module.exports = {
     proxy: {
       //endpoint cannot be route, context required
 
-      '/css': 'http://localhost:3000',
-      '/signup': 'http://localhost:3000',
-      '/item': 'http://localhost:3000',
+      "/css": "http://localhost:3000",
+      "/signup": "http://localhost:3000",
+      "/item": "http://localhost:3000",
+      "/item/filter": "http://localhost:3000",
       // '/create-item': 'http://localhost:3000',
       '/listings': 'http://localhost:3000',
       '/createpost': 'http://localhost:3000',
