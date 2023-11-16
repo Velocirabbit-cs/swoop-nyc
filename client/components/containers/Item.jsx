@@ -27,13 +27,32 @@ const Item = () => {
     }
   };
 
+  const grabAllItems = async () => {
+    try {
+      //fetching from item/filter router path with the queries added on
+      const allItems = await fetch('/item');
+      allItems.json().then( (response) => {
+        // console.log('filtered items jsoning..');
+        // console.log(response);
+        dispatch(updateItems({response: response}));
+        setReady(true);
+      });
+      //dispatch this information to the global state
+    }
+    catch (err) {
+      return;
+    }
+  };
+  useEffect(() => {
+    grabAllItems()},
+  []);
+
   const populate = async () => {
-    for(let i = 0; i < 10; i++){
+    for(let i = 0; i < 5; i++){
       const loadListings = {
         title: 'Filter Test Loader',
-        image:
-          '/https://tf-cmsv2-smithsonianmag-media.s3.amazonaws.com/filer_public/55/95/55958815-3a8a-4032-ac7a-ff8c8ec8898a/gettyimages-1067956982.jpg', //url from supabase
-        description: 'A new type of cat',
+        image:'https://bmvohouexqmijckbooug.supabase.co/storage/v1/object/public/item-image/3dPrintedGlitter.jpeg', //url from supabase
+        description: 'A new type of drink glitter bomb',
         borough: 'Brooklyn',
         neighborhood: 'Bushwick',
         // dropDate: Date.now()
