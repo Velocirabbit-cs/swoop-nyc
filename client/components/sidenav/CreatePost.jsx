@@ -134,6 +134,7 @@ const CreatePost = () => {
   
   //returns a form
   return (
+    <div id="create-listing">
     <div id="post-form">
       <div className="form-field">
         <div className="form-field-left">
@@ -191,7 +192,7 @@ const CreatePost = () => {
           </div>
         {postOutcome}
     </div>
-   
+   </div>
   );
 }
 

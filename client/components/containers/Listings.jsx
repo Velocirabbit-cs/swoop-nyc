@@ -8,11 +8,13 @@ import { Autocomplete } from '@react-google-maps/api';
 const Listings = () => {
 
   return (
-    <div style={{display: 'flex', flexDirection: 'row'}}>
+    <div className="listings">
       <Item/>
+      <div className='map-box'>
       <React.StrictMode>
-        <Maps style={{borderRadius: '5px'}}/>
+        <Maps />
       </React.StrictMode>
+      </div>
     </div>
   )
 }

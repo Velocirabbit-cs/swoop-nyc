@@ -115,18 +115,20 @@ const Item = () => {
   
   //the return is the borough dropdown, which updates the neighborhood dropdown, and the filter button, which queries database to receive items based on selected borough and neighborhood.
   return (
-    <div>
+    <div className='listings-items'>
+      <div>
       <select id='filter-borough' onChange={neighboorhoodPicker}>
         <option value="default">Choose Your Borough</option>
         <option value="Brooklyn">Brooklyn</option>
         <option value="Manhattan">Manhattan</option>
       </select>
       {neighboorhoodValues}
-      <button onClick={populate}>Populate Bushwick</button>
+      {/* <button onClick={populate}>Populate Bushwick</button> */}
       <button id='filter-button' onClick={ async () => {
         await grabFilteredItems(document.querySelector('#filter-borough').value,document.querySelector('#filter-neighboorhood').value)
       }}>Filter by Location</button>
-      <div className = 'listingsContainer'>
+      </div>
+      <div className='items-box'>
         {itemDiv}
       </div>
     </div>

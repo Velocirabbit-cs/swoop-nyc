@@ -3,8 +3,8 @@ import { GoogleMap, useLoadScript, Marker, Autocomplete } from '@react-google-ma
 
 const libraries = ['places'];
 const mapContainerStyle = {
-  width: '400px',
-  height: '500px',
+  width: '30vw',
+  height: '70vh',
 };
 const center = {
   lat: 40.74473571777344, // default latitude
@@ -34,9 +34,6 @@ const Maps = ({ }) => {
 
   return (
     <div>
-        <Autocomplete>
-        <input type='text' placeholder='Address'></input>
-      </Autocomplete>
       <GoogleMap
         mapContainerStyle={mapContainerStyle}
         zoom={12}
