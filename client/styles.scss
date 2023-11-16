@@ -41,7 +41,7 @@ body {
 nav {
   width: 100%;
   background-color: $primary;
-  height: 3em;
+  // height: 75px;
   display:flex;
   flex-direction: column;
   align-items:center;
@@ -173,12 +173,15 @@ nav {
 /* FOOTER */
 footer {
   width: 100%;
+  height: 8vh;
   background-color: $secondary-darker;
   text-align: center;
   line-height: 1.5em;
   color: $white-darkest;
   padding-top: 5px;
   padding-bottom: 5px;
+  position: fixed;
+  top: 92vh;
 }
 
 footer span {
@@ -268,14 +271,21 @@ footer span {
   to {opacity:1 ;}
 }
 
+// #page-routes {
+// // height: 80vh;
+// }
+
 .listings {
   width: 100vw;
+  position: fixed;
+  top: 50px;
   display: flex;
   flex-direction: row;
   justify-content: space-around;
   padding: 5vh 5vw;
   margin-right: 5vw;
   // background-color: black;
+  // z-index: -1;
 }
 
 .listings-items {
