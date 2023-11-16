@@ -6,6 +6,7 @@ import '../styles.css';
 import '../../build/calendar.css';
 import CreatePost from './sidenav/CreatePost.jsx';
 import Listings from './containers/Listings.jsx';
+import Share from './containers/Share.jsx';
 import Login from './sidenav/Login.jsx';
 import Signup from './sidenav/SignUp.jsx';
 import { useDispatch } from 'react-redux';
@@ -68,7 +69,13 @@ export default function App() {
 
       <footer>
         <p>A Velocirabbit Production</p>
-        <p>Jade | Jake | Jackson | Jandrew | Jdennis </p>
+        <p>
+          <span>J</span>ade | 
+          <span>J</span>ake | 
+          <span>J</span>ackson | 
+          <span>J</span>andrew | 
+          <span>J</span>dennis 
+        </p>
       </footer>
     </Router>
   );

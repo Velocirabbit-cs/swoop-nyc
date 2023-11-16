@@ -60,14 +60,9 @@ app.get('/auth', sessionController.verifySSID, (req, res) => {
 
 // post request to signup to create the user
 // The body will have {username, password}
-app.post(
-  '/signup',
-  userController.createUser,
-  sessionController.setSSID,
-  (req, res) => {
-    res.status(200).sendFile(staticPath);
-  }
-);
+app.post('/signup', userController.createUser, sessionController.setSSID, (req, res) => {
+  res.status(200).sendFile(staticPath);
+});
 
 app.post(
   '/login',

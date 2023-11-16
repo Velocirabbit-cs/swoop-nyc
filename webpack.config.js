@@ -62,8 +62,8 @@ module.exports = {
       template: './index.html',
     }),
     new Dotenv({
-      path: './.env',
-      // safe: true,
+      path: "./.env",
+      safe: true,
     }),
   ],
   devServer: {
@@ -78,7 +78,6 @@ module.exports = {
     //allows us to fetch to from localhost 3000 when we're on 8080
     proxy: {
       //endpoint cannot be route, context required
-
       "/css": "http://localhost:3000",
       "/signup": "http://localhost:3000",
       "/item": "http://localhost:3000",
