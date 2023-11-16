@@ -31,7 +31,12 @@ export default function Login({ checkAuth }) {
     //grab the form fields and build an object
     const username = document.querySelector('#username');
     const password = document.querySelector('#password');
-    const user = { username: username.value, password: password.value };
+    const email = document.querySelector('#email');
+    const user = {
+      username: username.value,
+      password: password.value,
+      email: email.value,
+    };
     console.log('USERNAME/PASS', user);
     //checks to make sure form fields are not empty
     for (const key in user) {
@@ -77,6 +82,14 @@ export default function Login({ checkAuth }) {
       <div id='loginPassword'>
         <label>Password</label>
         <input type='password' id='password'></input>
+      </div>
+      <div>
+        <label>Email:</label>
+        <input
+          type='email'
+          id='email'
+          placeholder='for new accounts only'
+        ></input>
       </div>
       <div className='signUpButtons'>
         <button onClick={checkUser} type='button' id='loginButton' > Login </button>
