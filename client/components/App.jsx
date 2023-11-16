@@ -33,6 +33,7 @@ export default function App() {
             <Link to='/createpost'>Create Listing</Link>
           </li>
         </ul>
+        <Share view={showShareView} />
       </nav>
 
       <Routes>
@@ -42,8 +43,6 @@ export default function App() {
         <Route path='/login' element={<Login />}></Route>
         <Route path='/signup' element={<Signup />}></Route>
       </Routes>
-
-      {/* <Share view={showShareView} /> */}
 
       <footer>
         <p>A Velocirabbit Production</p>
