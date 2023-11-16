@@ -58,7 +58,7 @@ export default function App() {
       </nav>
 
       <Routes>
-        <Route path='/' element={<LandingPage />}></Route>
+        <Route path='/' element={<LandingPage checkAuth={checkAuth} />}></Route>
         <Route path='/listings' element={<Listings />}></Route>
         <Route path='/createpost' element={<CreatePost />}></Route>
         <Route path='/login' element={<Login />}></Route>
@@ -70,11 +70,8 @@ export default function App() {
       <footer>
         <p>A Velocirabbit Production</p>
         <p>
-          <span>J</span>ade | 
-          <span>J</span>ake | 
-          <span>J</span>ackson | 
-          <span>J</span>andrew | 
-          <span>J</span>dennis 
+          <span>J</span>ade |<span>J</span>ake |<span>J</span>ackson |
+          <span>J</span>andrew |<span>J</span>dennis
         </p>
       </footer>
     </Router>

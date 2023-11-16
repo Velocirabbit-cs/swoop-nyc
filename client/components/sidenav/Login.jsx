@@ -1,7 +1,7 @@
 import React from 'react';
 import { useState } from 'react';
 
-export default function Login() {
+export default function Login({ checkAuth }) {
   const [signinMessage, setSigninMessage] = useState([]);
 
   //async function that will check to see if the user exists
@@ -17,11 +17,14 @@ export default function Login() {
     };
     try {
       await fetch('/login', options);
+      checkAuth();
     } catch (err) {
       //if the login fails, throw this error below the login button
-      setSigninMessage([<p id='error'>Could not find username or password.</p>]);
+      setSigninMessage([
+        <p id='error'>Could not find username or password.</p>,
+      ]);
     }
-  }
+  };
 
   //async function that will check to see if the user exists
   const createUser = async () => {
@@ -32,7 +35,8 @@ export default function Login() {
     console.log('USERNAME/PASS', user);
     //checks to make sure form fields are not empty
     for (const key in user) {
-      if (user[key] === '') { // [AFS] updated conditional to check value at user.key
+      if (user[key] === '') {
+        // [AFS] updated conditional to check value at user.key
         setSigninMessage([<p>Please input a valid username or password.</p>]);
         return;
       }
@@ -55,6 +59,7 @@ export default function Login() {
     };
     try {
       await fetch('/signup', options);
+      checkAuth();
     } catch (err) {
       //if the login fails, throw this error below the login button
       setSigninMessage([
@@ -65,20 +70,20 @@ export default function Login() {
 
   return (
     <div id='login'>
-      <div id="loginUserName">
+      <div id='loginUserName'>
         <label>User Name</label>
         <input type='text' id='username'></input>
       </div>
-      <div id="loginPassword">
+      <div id='loginPassword'>
         <label>Password</label>
         <input type='password' id='password'></input>
       </div>
-      <div id="loginSignInMessage">
-        {signinMessage}
-      </div>
-      <div id="signUpButtons">
+      <div id='loginSignInMessage'>{signinMessage}</div>
+      <div id='signUpButtons'>
         <button onClick={checkUser}>Login</button>
-        <button onClick={createUser} type="button">Sign Up</button>
+        <button onClick={createUser} type='button'>
+          Sign Up
+        </button>
       </div>
     </div>
   );
