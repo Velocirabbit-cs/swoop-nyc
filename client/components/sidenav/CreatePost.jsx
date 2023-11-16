@@ -21,6 +21,9 @@ const CreatePost = () => {
   //this piece of state will update the html for the following funciton
   const [neighboorhoodValues, setNeighboorhoodValues] = useState([]);
 
+  const[title, setTitle] = useState(true);
+  const[location, setLocation] = useState(true)
+
   //this function makes a post reques to DB. Called within createItem()
   const sendToDB = async (item) => {
     //add image to supabase and get the URL back, add the URL to the request body
@@ -72,6 +75,20 @@ const CreatePost = () => {
     const formDesc = document.querySelector('#form-desc');
     const formImg = document.querySelector('#form-img');
     //build an item object with the form values 
+    // console.log(formBorough)
+
+    if(!formTitle.value){
+      setTitle(false)
+      // console.log('This is formTitle', formTitle)
+      return
+    }
+
+    //must address this later!! Without changing location we have problems
+    // else if(!formBorough.option || !formNeighboorhood.option){
+    //       setLocation(false)
+    //       return
+    //   }
+
     const item = {}; 
     item.title = formTitle.value;
     item.borough = formBorough.value;
@@ -120,7 +137,10 @@ const CreatePost = () => {
     <div id="post-form">
       <div className="form-field">
         <div className="form-field-left">
+          <span>
+          {!title && <div>Please make a title for your post!</div>}
           <label>Title</label>
+          </span>
         </div>
         <div className="form-field-right">
           <input id='form-title' placeholder='Velvet Couch' type='text' name='item-title'></input>
@@ -128,11 +148,14 @@ const CreatePost = () => {
       </div>
       <div className="form-field">
         <div className="form-field-left">
+          <span>
+          {!location && <div>Please select a location for your post!</div>}
           <label>Location</label>
+          </span>
         </div>
         <div className="form-field-right">
           <select id='form-borough' onChange={neighboorhoodPicker}>
-          <option value="Choose a Bourough">Bourough</option>
+          <option value="Choose a Bourough">Select from the following</option>
             <option value="Brooklyn">Brooklyn</option>
             <option value="Manhattan">Manhattan</option>
           </select>

@@ -1,31 +1,26 @@
 import React from "react";
 import { useState } from "react";
 import { useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
-// import { useSelector } from "react-redux/es/hooks/useSelector";
+import { useDispatch } from "react-redux";
+import { useSelector } from "react-redux/es/hooks/useSelector";
 import { updateItems } from "../reducers/swoopSlice";
 import ItemView from "./ItemView.jsx";
-
+import '../../styles.css';
 
 const Item = () => {
   const dispatch = useDispatch();
-  
-  const items = useSelector((state) => {return state.swoop.items})
-  const [ready, setReady] = useState(false);//can use redux state
-  
-  
   //function below does what the regular grabItems does in App, but returns only items in a neighborhood/borough. Takes in 2 args (strings) to filter the query on server side (via a query on the req body).
   const grabFilteredItems = async (borough,neighborhood) => {
     try {
       //fetching from item/filter router path with the queries added on
-      const filteredItems = await fetch('/item/filter' + `?borough=${borough}&neighborhood=${neighborhood}`);
-      console.log('fetched items...')
-      filteredItems.json().then((response) => {;
+      const filteredItems = await fetch('/item/filter'+ `?borough=${borough}&neighborhood=${neighborhood}`);
+      filteredItems.json().then( (response) => {
+        // console.log('filtered items jsoning..');
+        console.log(response);
+        dispatch(updateItems({response: response}));
+        setReady(true);
+      });
       //dispatch this information to the global state
-      console.log('setting ready...')
-      dispatch(updateItems({response: response}));
-      setReady(true)
-      })
     }
     catch (err) {
       return;
@@ -54,26 +49,10 @@ const Item = () => {
     }
   }
 
-  //useselector to subscribe to the items piece of state to populate 
-
-  //loop through the list from back to front & push all of the 
-
-  const itemDiv = [];
-
-  useEffect( () => {
-    for (let i = items.length -1; i >= 0; i--) {
-      //create a viewer to display all properties of each item
-      console.log('inside of the loop')
-      itemDiv.push(
-        <ItemView className='itemView' item={items[i]}/>
-      )
-    }
-  }, [ready])
-  
-  //do this filtering on fetch request w specified params
-  //for filter form
   const [neighboorhoodValues, setNeighboorhoodValues] = useState([]);
   //this function updates the dropdown menu to display neighborhoods that correspond to the selected borough. invoked in onchange of filter-borough dropdown.
+  
+  
   const neighboorhoodPicker = () => {
     const borough = document.querySelector('#filter-borough') 
     if (borough.value === 'Brooklyn') {
@@ -103,6 +82,18 @@ const Item = () => {
     }
   };
   
+  const [ready,setReady] = useState(false);
+
+  const items = useSelector((state) => {return state.swoop.items});
+  const itemDiv = [];
+  for (let i = items.length -1; i >= 0; i--) {
+    //create a viewer to display all properties of each item
+    console.log('inside of the loop')
+    itemDiv.push(
+      <ItemView className='itemView' item={items[i]}/>
+    )
+  }
+  
   //the return is the borough dropdown, which updates the neighborhood dropdown, and the filter button, which queries database to receive items based on selected borough and neighborhood.
   return (
     <div>
@@ -116,8 +107,11 @@ const Item = () => {
       <button id='filter-button' onClick={ async () => {
         await grabFilteredItems(document.querySelector('#filter-borough').value,document.querySelector('#filter-neighboorhood').value)
       }}>Filter by Location</button>
-      {ready && itemDiv}
+      <div className = 'listingsContainer'>
+        {itemDiv}
+      </div>
     </div>
   )
 }
+
 export default Item;
