@@ -171,3 +171,8 @@ footer {
     height: 60px;
     border-radius: 50px;
 }
+
+.items-post {
+  height: 100px;
+  width: 100px;
+}

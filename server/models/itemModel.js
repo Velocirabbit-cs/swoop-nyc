@@ -6,8 +6,8 @@ const itemSchema = new Schema({
   image: { type: String, cast: false, required: false }, //url from supabase
   description: { type: String, cast: false, required: true },
   borough: { type: String, cast: false, required: true },
-  neighborhood: {type: String, cast: false,required: true}, // [borough, neighborhood]
-  dropDate: { type: Date, cast: false, default: Date.now },
+  neighborhood: { type: String, cast: false, required: true }, // [borough, neighborhood]
+  dropDate: { type: Date, cast: true, default: Date.now },
   expireAt: { type: Date, cast: false, expires: '1d' }, // I think this is wrong, full document should expire
 });
 
