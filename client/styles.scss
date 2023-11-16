@@ -40,6 +40,7 @@ body {
 /* NAV BAR */
 nav {
   width: 100%;
+  position: fixed;
   background-color: $primary;
   // height: 75px;
   display:flex;
@@ -345,4 +346,50 @@ footer span {
 
 .map-box {
   padding: 1vw;
+}
+
+#create-listing {
+  width: 100%;
+  display: flex;
+  // margin-bottom: 10vh;;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  // background-color: black;
+}
+
+#post-form {
+  background-color: #FFFFFF;
+  display: flex;
+  height: 70vh;
+  width: 50vw;
+  min-width: 400px;
+  max-width: 600px;
+  justify-content: space-around;
+  align-items: center;
+  margin-top: 100px;
+  flex-direction: column;
+  border-radius: 5px;
+  box-shadow: 0px 0px 50px rgba(0, 0, 0, 0.505);
+}
+
+.form-field {
+  width: 90%;
+  display: flex;
+  justify-content: space-between;
+  max-width: inherit;
+}
+
+#form-field-left {
+  display: flex;
+  width: 100%;
+  margin: auto;
+}
+
+#form-field-right {
+  display: flex;
+  justify-content: flex-end;
+  align-items: flex-end;
+  width: 200px;
+  margin: auto;
 }
